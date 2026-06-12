@@ -5,6 +5,7 @@ pub struct Question {
     // TODO: add a public `title` field of type String
     // TODO: add a public `description` field of type String
     pub title: String,
+    pub description: String,
 }
 #[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
 pub struct QuestionDetail {
@@ -22,7 +23,7 @@ pub struct QuestionDetail {
 //       derive the following traits: Serialize, Deserialize
 //       add a public `question_uuid` field of type String
 #[derive(Serialize, Deserialize)]
-struct QuestionId {
+pub struct QuestionId {
     pub question_uuid: String,
 }
 // ----------
@@ -32,7 +33,7 @@ struct QuestionId {
 //       add a public `question_uuid` field of type String
 //       add a public `content` field of type String
 #[derive(Serialize, Deserialize)]
-struct Answer {
+pub struct Answer {
     pub question_uuid: String,
     pub content: String,
 }
@@ -45,7 +46,7 @@ struct Answer {
 //       add a public `content` field of type String
 //       add a public `created_at` field of type String
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
-struct AnswerDetail {
+pub struct AnswerDetail {
     pub answer_uuid: String,
     pub question_uuid: String,
     pub content: String,
@@ -56,6 +57,6 @@ struct AnswerDetail {
 //       derive the following traits: Serialize, Deserialize
 //       add a public `answer_uuid` field of type String
 #[derive(Serialize, Deserialize)]
-struct AnswerId {
+pub struct AnswerId {
     pub answer_uuid: String,
 }
