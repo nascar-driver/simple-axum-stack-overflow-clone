@@ -1,5 +1,6 @@
-use thiserror::Error;
 use serde::{Deserialize, Serialize};
+use sqlx::prelude::FromRow;
+use thiserror::Error;
 
 #[derive(Serialize, Deserialize)]
 pub struct Question {
@@ -22,13 +23,13 @@ pub struct QuestionId {
 
 // ----------
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, sqlx::FromRow)]
 pub struct Answer {
     pub question_uuid: String,
     pub content: String,
 }
 
-#[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, sqlx::FromRow)]
 pub struct AnswerDetail {
     pub answer_uuid: String,
     pub question_uuid: String,
