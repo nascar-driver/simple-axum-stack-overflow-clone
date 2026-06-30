@@ -115,12 +115,10 @@ impl AnswersDao for AnswersDaoImpl {
         // ```
         // If executing the query results in an error, map that error
         // to a `DBError::Other` error and early return from this function.
-        let records: Vec<AnswerDetail> =
-            sqlx::query!("SELECT * FROM answers WHERE question_uuid = $1")
-                .bind(uuid)
-                .fetch_all(&self.db)
-                .await
-                .map_err(|e| DBError::Other(Box::new(e)))?;
+        let records = sqlx::query!("SELECT * FROM answers WHERE question_uuid = $1", uuid)
+            .fetch_all(&self.db)
+            .await
+            .map_err(|e| DBError::Other(Box::new(e)))?;
 
         // Iterate over `records` and map each record to a `AnswerDetail` type
         let answers = records
